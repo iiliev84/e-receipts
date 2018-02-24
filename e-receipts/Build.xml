@@ -17,20 +17,22 @@
   <target name="compile" depends="init"
         description="compile the source">
     <!-- Compile the java code from ${src} into ${build} -->
-    <target name="compile" depends="init"
-	          description="compile the source " >
-	    <!-- Compile the java code from ${src} into ${bin} -->
-	    <javac 
-	      <classpath location="${junit}/junit-4.12.jar"/>
-	      <classpath location="${junit}/hamcrest-core-1.3.jar"/>
-	    </javac>
-	  </target>
+    <javac srcdir="${src}" destdir="${build}"/>
   </target>
 
+  <target name="dist" depends="compile"
+        description="generate the distribution">
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
 
   <target name="clean"
         description="clean up">
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build}"/>
+    <delete dir="${dist}"/>
   </target>
 </project>
