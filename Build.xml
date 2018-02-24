@@ -3,10 +3,6 @@
     simple example build file
   </description>
   <!-- set global properties for this build -->
-  <!--<property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist" location="dist"/>
--->
   <target name="init">
     <!-- Create the time stamp -->
     <tstamp/>
@@ -20,10 +16,6 @@
     <target name="compile" depends="init"
 	          description="compile the source " >
 	    <!-- Compile the java code from ${src} into ${bin} -->
-	    <javac 
-	      <classpath location="${junit}/junit-4.12.jar"/>
-	      <classpath location="${junit}/hamcrest-core-1.3.jar"/>
-	    </javac>
 	  </target>
   </target>
 
