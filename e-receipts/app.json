@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "e-receipts",
-    "description": "A very interesting project.",
-    "slug": "e-receipts",
+    "name": "E-Receipts",
+    "description": "Helps you manage your receipts.",
+    "slug": "E-Receipts",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],

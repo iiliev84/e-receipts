@@ -1,9 +1,9 @@
 {
   expo: {
-    name: "My New Project",
-    description: "No description",
-    slug: "my-new-project",
-    privacy: "unlisted",
+    name: "E-Receipts",
+    description: "Helps you manage your receipts",
+    slug: "E-Receipts",
+    privacy: "public",
     sdkVersion: "UNVERSIONED",
     version: "1.0.0",
     orientation: "portrait",

@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import ReceiptsScreen from '../screens/ReceiptsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
@@ -14,8 +15,8 @@ export default TabNavigator(
     Home: {
       screen: HomeScreen,
     },
-    Links: {
-      screen: LinksScreen,
+    Receipts: {
+      screen: ReceiptsScreen,
     },
     Settings: {
       screen: SettingsScreen,
@@ -30,15 +31,15 @@ export default TabNavigator(
           case 'Home':
             iconName =
               Platform.OS === 'ios'
-                ? `ios-information-circle${focused ? '' : '-outline'}`
-                : 'md-information-circle';
+                ? `ios-home${focused ? '' : '-outline'}`
+                : 'md-home';
             break;
-          case 'Links':
-            iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
+          case 'Receipts':
+            iconName = Platform.OS === 'ios' ? `ios-paper${focused ? '' : '-outline'}` : 'ios-paper';
             break;
           case 'Settings':
             iconName =
-              Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
+              Platform.OS === 'ios' ? `ios-construct${focused ? '' : '-outline'}` : 'ios-construct';
         }
         return (
           <Ionicons
