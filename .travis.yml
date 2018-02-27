@@ -7,8 +7,7 @@ before_install:
 npm:
   - install
   - start
-  script:
-  - npm test
+  - test
 cache:
   directories:
     - "node_modules"
