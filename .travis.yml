@@ -5,7 +5,7 @@ node_js:
 before_install:
   - npm i -g npm@4
 npm:
-  - instal --save package-json
+  - install --save package-json
   - start
   - test
 cache:
