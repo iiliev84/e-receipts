@@ -4,9 +4,8 @@ node_js:
   - v9.5.0
 before_install:
   - npm i -g npm@4
-  -npm install --save package-json
 npm:
-  - install
+  - instal --save package-json
   - start
   - test
 cache:
