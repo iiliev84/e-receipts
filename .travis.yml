@@ -6,9 +6,8 @@ before_install:
   - npm i -g npm@4
   -npm i --save package.json
 npm:
-  - install package.json --save
+  - install
   - start
-  - test
 cache:
   directories:
     - "node_modules"
