@@ -1,2 +1,12 @@
-language: java
-jdk: oraclejdk8
+language: node_js
+node_js:
+  - v9.5.0
+before_install:
+  - npm i -g npm@4
+npm:
+  - install -g exp
+exp:
+  - start
+cache:
+  directories:
+    - "node_modules"
