@@ -4,6 +4,8 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
+import LoginScreen from './screens/LoginScreen';
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -16,6 +18,7 @@ export default class App extends React.Component {
           startAsync={this._loadResourcesAsync}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
+
         />
       );
     } else {
@@ -23,7 +26,8 @@ export default class App extends React.Component {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
+          <LoginScreen />
+          
         </View>
       );
     }
