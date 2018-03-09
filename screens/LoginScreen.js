@@ -6,12 +6,19 @@ import {
   View,
   TextInput,
   ScrollView,
-  Label
+  Label,
+  Button,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default class LoginScreen extends React.Component {
+  onPressSignin(){
+    Alert.alert('You tapped the button!')
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -27,8 +34,13 @@ export default class LoginScreen extends React.Component {
         secureTextEntry={true}
         style={styles.textInput}
     /></View>
-    <View>
-    <Text>Sign in</Text>
+    <View style={styles.buttonContainer}>
+    <Button
+  onPress={this.onPressSignin}
+  title="Sign In"
+  color="#ffffff"
+  accessibilityLabel="Sign In button"
+/>
     </View>
         </ScrollView>
       </View>
@@ -48,6 +60,9 @@ const styles = StyleSheet.create({
     paddingTop:30,
     flexDirection: 'column'
 },
+ buttonContainer: {
+    margin: 20
+  },
   label: {
     color: '#424242',
     fontSize: 20
