@@ -1,11 +1,17 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View,AppRegistry } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import { StackNavigator } from 'react-navigation';
 
 import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignupScreen';
 
+export const AppNavigator =StackNavigator({
+ LoginScreen:{screen:LoginScreen},
+ SignupScreen:{screen:SignupScreen}
+})
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -26,7 +32,7 @@ export default class App extends React.Component {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <LoginScreen />
+          <AppNavigator />
           
         </View>
       );
@@ -70,3 +76,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 });
+AppRegistry.registerComponent('navigation', () => app);
