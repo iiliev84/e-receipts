@@ -130,7 +130,7 @@ const {navigate} = this.props.navigation;
           onChangeText={(text) => this.setState({phone:text})}
         />
     </View>
-    <View>
+    <View  style={styles.buttonContainer}>
      <Button
      onPress={() => this._handlePress()}
   	title="Sign Up"
@@ -148,11 +148,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2196F3',
+    height:1000
   },
   scroll: {
     backgroundColor: '#C62828',
     padding: 10,
     paddingTop:30,
+    height:1000,
     flexDirection: 'column'
 },
 TitleText:{

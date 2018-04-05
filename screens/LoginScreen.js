@@ -19,11 +19,11 @@ import {
 
 export default class LoginScreen extends React.Component {
 static navigationOptions = {
-    title: 'Welcome',
+    title: 'Welcome to E-Receipts',
   }
 
   onPressSignin(){
-    Alert.alert('You tapped the button!');
+    Alert.alert('You tapped the button!!!');
   }
 
   render() {
@@ -48,7 +48,7 @@ static navigationOptions = {
     <Button
   onPress={this.onPressSignin}
   title="Sign In"
-  color="#ffffff"
+  color="#42A5F5"
   accessibilityLabel="Sign In button"
 />
     </View>
@@ -56,7 +56,7 @@ static navigationOptions = {
     <Button
     title="Don't have account? Sign Up Here"
     onPress={() => this.props.navigation.navigate('SignupScreen')}
-    color="#FFFFFF"
+    color="#42A5F5"
     accessibilityLabel="Sign up button"
     />
     </View>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
 },
 TitleText:{
-  fontSize:30,
+  fontSize:20,
   paddingTop:20,
   color:'#FFFFFF',
   justifyContent: 'center',
@@ -90,15 +90,15 @@ TitleText:{
     margin: 20
   },
   label: {
-    color: '#424242',
+    color: '#F5F5F5',
     fontSize: 20
 },
 alignRight: {
     alignSelf: 'flex-end'
 },
 textInput: {
-    height: 80,
-    fontSize: 30,
+    height: 40,
+    fontSize: 25,
     backgroundColor: '#FFF'
 },
 });
