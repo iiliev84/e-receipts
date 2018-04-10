@@ -8,6 +8,7 @@ import {
   Label,
   Button,
   Alert,
+  KeyboardAvoidingView
 } from 'react-native';
 import {
   StackNavigator,
@@ -32,7 +33,7 @@ constructor(props) {
       result:'',
     }
   }
- 
+
 _handlePress(){
 	console.log(this.state.username);
 	console.log(this.state.password);
@@ -45,7 +46,7 @@ _handlePress(){
 
 	fetch(url, {
   method: 'POST',
-  body: JSON.stringify(data), 
+  body: JSON.stringify(data),
 }).then(res => res.json())
 .catch(error => Alert.alert('Error'))
 .then(response => Alert.alert('Success'));
@@ -55,62 +56,45 @@ _handlePress(){
   render() {
 const {navigate} = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+     style={styles.container}
+     behavior="padding"
+   >
       <ScrollView style={styles.scroll}>
       <View><Text style={styles.TitleText}>E-Receipts</Text></View>
     <View>
-    <Text>
-         User Name:
-        </Text>
-
         <TextInput
           style={styles.textInput}
-          placeholder="Enter Name"
+          placeholder="User Name"
           returnKeyLabel = {"next"}
           onChangeText={(text) => this.setState({username:text})}
         />
     </View>
      <View>
-    <Text>
-         Password:
-        </Text>
-
         <TextInput
           style={styles.textInput}
-          placeholder="Enter password"
+          placeholder="Password"
           returnKeyLabel = {"next"}
           onChangeText={(text) => this.setState({password:text})}
         />
     </View>
      <View>
-    <Text>
-         First Name:
-        </Text>
-
         <TextInput
           style={styles.textInput}
-          placeholder="Enter first name"
+          placeholder="First name"
           returnKeyLabel = {"next"}
           onChangeText={(text) => this.setState({firstname:text})}
         />
     </View>
      <View>
-    <Text>
-         Last Name:
-        </Text>
-
         <TextInput
           style={styles.textInput}
-          placeholder="Enter Last Name"
+          placeholder="Last Name"
           returnKeyLabel = {"next"}
           onChangeText={(text) => this.setState({lastname:text})}
         />
     </View>
      <View>
-    <Text>
-        Email:
-        </Text>
-
         <TextInput
           style={styles.textInput}
           placeholder="Enter email"
@@ -119,10 +103,6 @@ const {navigate} = this.props.navigation;
         />
     </View>
      <View>
-    <Text>
-         Phone:
-        </Text>
-
         <TextInput
           style={styles.textInput}
           placeholder="Enter phone"
@@ -130,16 +110,15 @@ const {navigate} = this.props.navigation;
           onChangeText={(text) => this.setState({phone:text})}
         />
     </View>
-    <View  style={styles.buttonContainer}>
+    <View style={styles.buttonContainer}>
      <Button
      onPress={() => this._handlePress()}
-  	title="Sign Up"
-  	color="#ffffff"
-  	accessibilityLabel="Sign Up button"
+  	 title="Sign Up"
+  	 accessibilityLabel="Sign Up button"
     />
     </View>
       </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -147,37 +126,39 @@ const {navigate} = this.props.navigation;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2196F3',
-    height:1000
+    backgroundColor: '#C62828',
+    justifyContent: 'space-between',
   },
   scroll: {
     backgroundColor: '#C62828',
     padding: 10,
-    paddingTop:30,
-    height:1000,
-    flexDirection: 'column'
+    flex: 1,
 },
 TitleText:{
-  fontSize:30,
-  paddingTop:20,
+  fontSize:24,
+  paddingTop:10,
   color:'#FFFFFF',
-  justifyContent: 'center',
-  alignItems: 'center',
+  textAlign: 'center',
   fontWeight:'bold'
 },
  buttonContainer: {
-    margin: 20
+   margin: 20,
+   borderRadius: 4,
+   backgroundColor: '#29B6F6',
   },
   label: {
     color: '#424242',
     fontSize: 20
 },
-alignRight: {
-    alignSelf: 'flex-end'
-},
 textInput: {
-    height: 40,
-    fontSize: 30,
+    height: 34,
+    margin: 20,
+    marginBottom: 0,
+    fontSize: 16,
+    paddingHorizontal: 10,
+    borderRadius: 4,
+    borderColor: '#ccc',
+    borderWidth: 1,
     backgroundColor: '#FFF'
 },
 });

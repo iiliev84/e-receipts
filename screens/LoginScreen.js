@@ -9,7 +9,8 @@ import {
   Label,
   Button,
   Alert,
-  AppRegistry
+  AppRegistry,
+  KeyboardAvoidingView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -28,40 +29,41 @@ static navigationOptions = {
 
   render() {
     return (
+      <KeyboardAvoidingView
+     behavior="padding"
+     style={styles.container}
+   >
       <View style={styles.container}>
       <ScrollView style={styles.scroll}>
       <View><Text style={styles.TitleText}>E-Receipts</Text></View>
       <View>
-    <Text style={styles.label}>Username:</Text>
     <TextInput
         style={styles.textInput}
         placeholder='Username'
     /></View>
     <View>
-    <Text style={styles.label}>Password:</Text>
     <TextInput
         secureTextEntry={true}
         style={styles.textInput}
         placeholder='Password'
     /></View>
     <View style={styles.buttonContainer}>
-    <Button
+    <Button style={styles.buttonContainer}
   onPress={this.onPressSignin}
   title="Sign In"
-  color="#42A5F5"
   accessibilityLabel="Sign In button"
 />
-    </View>
-    <View style={styles.buttonContainer}>
+</View>
+<View style={styles.signupbtn}>
     <Button
     title="Don't have account? Sign Up Here"
     onPress={() => this.props.navigation.navigate('SignupScreen')}
-    color="#42A5F5"
     accessibilityLabel="Sign up button"
     />
     </View>
         </ScrollView>
       </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -83,11 +85,17 @@ TitleText:{
   paddingTop:20,
   color:'#FFFFFF',
   justifyContent: 'center',
-  alignItems: 'center',
+  textAlign: 'center',
   fontWeight:'bold'
 },
  buttonContainer: {
-    margin: 20
+  margin: 20,
+  borderRadius: 4,
+  backgroundColor: '#29B6F6',
+  },
+  signupbtn:{
+    margin: 20,
+    borderRadius: 4,
   },
   label: {
     color: '#F5F5F5',
@@ -97,9 +105,15 @@ alignRight: {
     alignSelf: 'flex-end'
 },
 textInput: {
-    height: 40,
-    fontSize: 25,
-    backgroundColor: '#FFF'
+  height: 34,
+  margin: 20,
+  marginBottom: 0,
+  fontSize: 16,
+  paddingHorizontal: 10,
+  borderRadius: 4,
+  borderColor: '#ccc',
+  borderWidth: 1,
+  backgroundColor: '#FFF'
 },
 });
 AppRegistry.registerComponent('LoginPage', () => App);
