@@ -22,11 +22,50 @@ export default class LoginScreen extends React.Component {
 static navigationOptions = {
     title: 'Welcome to E-Receipts',
   }
+  constructor(props) {
+      super(props);
+       this.state = {
+         isLoading:true,
+         username:'',
+         password:'',
+      }
+    }
 
   onPressSignin(){
-    Alert.alert('You tapped the button!!!');
-  }
+    console.log(this.state.username);
+    console.log(this.state.password);
+    var username=this.state.username;
+    var password=this.state.password;
+    if(username.length < 1 || password.length<1)
+    {
+      Alert.alert("Username or Password empty");
+    }else {
+        var url = 'https://6cl2u8dzoi.execute-api.us-east-2.amazonaws.com/StageOne/sqlmethods?username=${this.state.username}&password=${this.state.password}';
+        fetch(url, {
+     method: 'Post',
+     body: JSON.stringify({
+       body:{
+       userName:username,
+       password:password,
+       }
+     }),
+   })
+     .then((response) => response.json())
+     .then((responseJson) => {
+       this.setState({
+         isLoading: false,
+         dataSource: JSON.stringify(responseJson),
+       }, function(){
 
+       });
+
+     })
+     .catch((error) =>{
+       console.error("FAILEd========="+error);
+     });
+        Alert.alert('You tapped the button!!!');
+      }
+  }
   render() {
     return (
       <KeyboardAvoidingView
@@ -40,16 +79,18 @@ static navigationOptions = {
     <TextInput
         style={styles.textInput}
         placeholder='Username'
+        onChangeText={username => this.setState({username})}
     /></View>
     <View>
     <TextInput
         secureTextEntry={true}
         style={styles.textInput}
         placeholder='Password'
+        onChangeText={password => this.setState({password})}
     /></View>
     <View style={styles.buttonContainer}>
     <Button style={styles.buttonContainer}
-  onPress={this.onPressSignin}
+  onPress={this.onPressSignin.bind(this)}
   title="Sign In"
   accessibilityLabel="Sign In button"
 />
