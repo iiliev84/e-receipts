@@ -12,11 +12,18 @@ import {
   AppRegistry,
   KeyboardAvoidingView
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+import HomeScreen from '../screens/HomeScreen';
+import RootNavigation from '../navigation/RootNavigation';
 import {
   StackNavigator,
+  NavigationActions,
 } from 'react-navigation';
+
+export const AppN = StackNavigator({
+  Home: { screen: HomeScreen },
+});
 
 export default class LoginScreen extends React.Component {
 static navigationOptions = {
@@ -31,6 +38,16 @@ static navigationOptions = {
       }
     }
 
+    resetNavigation(targetRoute) {
+  const resetAction = NavigationActions.reset({
+    index: 0,
+    key: null,
+    actions: [
+      NavigationActions.navigate({ routeName: targetRoute }),
+    ],
+  });
+  this.props.navigation.dispatch(resetAction);
+}
   onPressSignin(){
     console.log(this.state.username);
     console.log(this.state.password);
@@ -40,7 +57,7 @@ static navigationOptions = {
     {
       Alert.alert("Username or Password empty");
     }else {
-        var url = 'https://6cl2u8dzoi.execute-api.us-east-2.amazonaws.com/StageOne/sqlmethods?username=${this.state.username}&password=${this.state.password}';
+        var url = 'https://6cl2u8dzoi.execute-api.us-east-2.amazonaws.com/StageOne/getuser';
         fetch(url, {
      method: 'Post',
      body: JSON.stringify({
@@ -56,17 +73,29 @@ static navigationOptions = {
          isLoading: false,
          dataSource: JSON.stringify(responseJson),
        }, function(){
-
+         console.log(responseJson);
+         var body = JSON.parse(responseJson.body)
+         if(body.message.recordsets[0] == '')
+         {
+           Alert.alert("Login failed. Please try again.");
+         }
+         else {
+           Alert.alert("","Login successful!",
+  [
+    {text: 'OK', onPress: () => this.resetNavigation('RootNavigation')},
+  ],
+  { cancelable: false }
+)
+         }
        });
-
      })
      .catch((error) =>{
        console.error("FAILEd========="+error);
      });
-        Alert.alert('You tapped the button!!!');
       }
   }
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView
      behavior="padding"
@@ -113,7 +142,7 @@ static navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#C62828',
   },
   scroll: {
     backgroundColor: '#C62828',

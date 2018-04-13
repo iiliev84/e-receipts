@@ -9,7 +9,6 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ReceiptsScreen from '../screens/ReceiptsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-
 export default TabNavigator(
   {
     Home: {

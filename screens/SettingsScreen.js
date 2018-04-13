@@ -1,11 +1,38 @@
 import React from 'react';
-import {AppRegistry,ScrollView,Text,StyleSheet,View,Image} from 'react-native'
+import {AppRegistry,ScrollView,Text,StyleSheet,View,Image,TouchableHighlight,Alert} from 'react-native'
 import { ExpoConfigView } from '@expo/samples';
-  
+import {
+  StackNavigator,
+  NavigationActions,
+} from 'react-navigation';
+
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
   };
+  //use this function to navigate to the target route which will have all the back functionality disabled
+resetNavigation(targetRoute) {
+const resetAction = NavigationActions.reset({
+  index: 0,
+  key: null,
+  actions: [
+    NavigationActions.navigate({ routeName: targetRoute }),
+  ],
+});
+this.props.navigation.dispatch(resetAction);
+}
+
+onPressLogout(){
+  Alert.alert(
+    'Logout',
+    'Are you sure to logout?',
+    [
+      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'OK', onPress: () => this.resetNavigation('LoginScreen')},
+    ],
+    { cancelable: false }
+  )
+}
 
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
@@ -21,7 +48,13 @@ export default class SettingsScreen extends React.Component {
 		</View>
         <View style={styles.row}><Text>Personal Setting</Text></View>
         <View style={styles.row}><Text>Group Setting</Text></View>
-        <View style={styles.row}><Text>Logout</Text></View>
+        <View style={styles.row}>
+        <TouchableHighlight
+         style={styles.logoutbtn}
+         onPress={this.onPressLogout.bind(this)}
+        ><Text> Logout </Text>
+        </TouchableHighlight>
+        </View>
       </ScrollView>
     )
   }
@@ -38,6 +71,9 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
 	resizeMode: 'contain',
+  },
+  logoutbtn:{
+    backgroundColor:"#ffff",
   },
   row: {
     padding: 15,

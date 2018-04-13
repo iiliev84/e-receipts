@@ -42,14 +42,19 @@ _handlePress(){
 	console.log(this.state.email);
 	console.log(this.state.phone);
 	console.log(this.state.result);
-	var data = {userName: this.state.username, userPassword: this.state.password, firstName: this.state.firstname, lastName: this.state.lastname, email: this.state.email, phone: this.state.phone};
+  if(this.state.username.length<1||this.state.password.length<1||this.state.firstname.length<1||this.state.lastname.length<1||this.state.email.length<1||this.state.phone.length<1)
+  {
+    Alert.alert("One or more fields are empty.\n\r Please enter your information.");
+  }else {
+    var data = {userName: this.state.username, userPassword: this.state.password, firstName: this.state.firstname, lastName: this.state.lastname, email: this.state.email, phone: this.state.phone};
 
-	fetch(url, {
-  method: 'POST',
-  body: JSON.stringify(data),
-}).then(res => res.json())
-.catch(error => Alert.alert('Error'))
-.then(response => Alert.alert('Success'));
+  	fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  }).then(res => res.json())
+  .catch(error => Alert.alert('Error'))
+  .then(response => (response.message != null) ? Alert.alert('Success') : Alert.alert("User already exists"));
+  }
 	}
 
 
@@ -97,7 +102,7 @@ const {navigate} = this.props.navigation;
      <View>
         <TextInput
           style={styles.textInput}
-          placeholder="Enter email"
+          placeholder="Email"
           returnKeyLabel = {"next"}
           onChangeText={(text) => this.setState({email:text})}
         />
@@ -105,7 +110,7 @@ const {navigate} = this.props.navigation;
      <View>
         <TextInput
           style={styles.textInput}
-          placeholder="Enter phone"
+          placeholder="Phone Number"
           returnKeyLabel = {"next"}
           onChangeText={(text) => this.setState({phone:text})}
         />
