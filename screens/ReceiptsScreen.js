@@ -5,13 +5,27 @@ import {ScrollView,
 		View,
 		Image,
 		AppRegistry,
-		ActivityIndicator	} from 'react-native';
+		ActivityIndicator,
+		TouchableHighlight} from 'react-native';
+	// NOT sure if files needed
+		import Icon from 'react-native-vector-icons/FontAwesome';
+		import HomeScreen from '../screens/HomeScreen';
+		import RootNavigation from '../navigation/RootNavigation';
+		import {
+		  StackNavigator,
+		  NavigationActions,
+		} from 'react-navigation';
+	// NOT sure above
 
 var badUrl = 'https://facebook.github.io/react/logo-og.png';
 
+export const AppN = StackNavigator({
+  Home: { screen: HomeScreen },
+});
+
 export default class ReceiptsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Receipts',
+    title: 'Receipts List',
   };
 
 	constructor(props) {
@@ -20,6 +34,19 @@ export default class ReceiptsScreen extends React.Component {
       isLoading: true,
     };
   }
+
+	// CODE from Loginscreen might not be needed
+	resetNavigation(targetRoute) {
+const resetAction = NavigationActions.reset({
+	index: 0,
+	key: null,
+	actions: [
+		NavigationActions.navigate({ routeName: targetRoute }),
+	],
+});
+this.props.navigation.dispatch(resetAction);
+}
+	// ends loginscreen code
 
 	componentDidMount() {
     var url =
@@ -61,6 +88,7 @@ export default class ReceiptsScreen extends React.Component {
   }
 
   render() {
+		const { navigate } = this.props.navigation;
 		if (this.state.isLoading) {
       return (
         <View style={{ flex: 1, padding: 20, paddingTop: 375 }}>
@@ -68,21 +96,26 @@ export default class ReceiptsScreen extends React.Component {
         </View>
       );
     }
-
     return (
 	 <ScrollView style={styles.container}>
       <View style={styles.row}><Text style={{fontSize:28,textAlign: 'center',}}>Receipts List</Text></View>
 	  <View style={styles.row}>
-	  <Text>Receipt 1</Text>
-	  <Image
-		  source={{ uri: this.state.imgUrl }}
-			style={styles.imageStyle}	/>
-	</View>
+		<Text>Receipt 1 Button</Text>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('SignupScreen')}>
+        <Image
+            source={{ uri: this.state.imgUrl }}
+            style={styles.imageStyle}
+          />
+        </TouchableHighlight>
+		</View>
 		<View style={styles.row}>
-		<Text>Receipt 2</Text>
-		<Image
-		 source={{ uri: this.state.imgUrl }}
-		 style={styles.imageStyle}/>
+		<Text>Receipt 2 Button</Text>
+        <TouchableHighlight onPress={() => navigate('HomeScreen')}>
+        <Image
+            source={{ uri: this.state.imgUrl }}
+            style={styles.imageStyle}
+          />
+        </TouchableHighlight>
 			</View>
 	  </ScrollView>
     )
@@ -105,3 +138,4 @@ const styles = StyleSheet.create({
 	  resizeMode: 'contain',
   },
 });
+AppRegistry.registerComponent('ReceiptsPage', () => App);
