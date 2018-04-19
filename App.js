@@ -10,10 +10,7 @@ import SignupScreen from './screens/SignupScreen';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 export const AppNavigator =StackNavigator({
- LoginScreen:{screen:LoginScreen},
- SignupScreen:{screen:SignupScreen},
  RootNavigation:{screen:RootNavigation},
- SettingsScreen:{screen:SettingsScreen},
 })
 export default class App extends React.Component {
   state = {
