@@ -82,7 +82,7 @@ static navigationOptions = {
          else {
            Alert.alert("","Login successful!",
   [
-    {text: 'OK', onPress: () => this.resetNavigation('RootNavigation')},
+    {text: 'OK', onPress: () => this.props.navigation.navigate('Main')},
   ],
   { cancelable: false }
 )
